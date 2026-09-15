@@ -1,0 +1,650 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login Attack Detection Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='Dashboard.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <h1>🔐 Login Attack Detection</h1>
+
+    <p>SOC Security Monitoring Dashboard</p>
+
+    <div class="system-status">
+        🟢 SYSTEM STATUS: MONITORING
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- DASHBOARD CARDS -->
+
+    <section class="cards">
+
+        <div class="card">
+            <h3>📊 Total Logs</h3>
+            <p id="total-logs">Loading...</p>
+        </div>
+
+        <div class="card">
+            <h3>❌ Failed Logins</h3>
+            <p id="failed-logins">Loading...</p>
+        </div>
+
+        <div class="card">
+            <h3>⚠️ Suspicious IPs</h3>
+            <p id="suspicious-ips">Loading...</p>
+        </div>
+
+        <div class="card">
+            <h3>🚨 High Alerts</h3>
+            <p id="high-alerts">Loading...</p>
+        </div>
+
+    </section>
+
+
+    <!-- ATTACK SUMMARY -->
+
+    <section class="attack-summary">
+
+        <h2>📊 Attack Summary</h2>
+
+        <div class="attack-cards">
+
+            <div class="attack-card">
+                <h3>🚨 Brute Force</h3>
+                <p id="brute-force">0</p>
+            </div>
+
+            <div class="attack-card">
+                <h3>⚡ Rapid Login</h3>
+                <p id="rapid-login">0</p>
+            </div>
+
+            <div class="attack-card">
+                <h3>🌙 Off-Hours</h3>
+                <p id="off-hours">0</p>
+            </div>
+
+            <div class="attack-card">
+                <h3>🔴 High Failure</h3>
+                <p id="high-failure">0</p>
+            </div>
+
+            <div class="attack-card">
+                <h3>🔓 Account Compromise</h3>
+                <p id="account-compromise">0</p>
+            </div>
+
+            <div class="attack-card">
+                <h3>🌐 Suspicious IP</h3>
+                <p id="suspicious-ip">0</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADD TEST LOG -->
+
+    <section class="add-log-section">
+
+        <h2>➕ Add Test Login Log</h2>
+
+        <p class="section-description">
+            Add a login event directly from the dashboard
+            and test the detection system.
+        </p>
+
+        <div class="add-log-form">
+
+            <div class="form-group">
+
+                <label for="log-time">
+                    🕐 Time
+                </label>
+
+                <input
+                    type="time"
+                    id="log-time"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="log-ip">
+                    🌐 IP Address
+                </label>
+
+                <input
+                    type="text"
+                    id="log-ip"
+                    placeholder="Example: 192.168.1.99"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="log-status">
+                    🔐 Login Status
+                </label>
+
+                <select id="log-status">
+
+                    <option value="FAILED">
+                        FAILED
+                    </option>
+
+                    <option value="SUCCESS">
+                        SUCCESS
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="add-log-btn"
+            >
+                ➕ Add Login Log
+            </button>
+
+        </div>
+
+        <p id="log-message"></p>
+
+    </section>
+
+
+    <!-- SEARCH AND FILTER -->
+
+    <section class="filters">
+
+        <h2>🔎 Alert Search &amp; Filter</h2>
+
+        <div class="filter-controls">
+
+            <input
+                type="text"
+                id="ip-search"
+                placeholder="Search IP Address..."
+            >
+
+            <select id="attack-filter">
+
+                <option value="ALL">
+                    All Attack Types
+                </option>
+
+                <option value="Brute Force Attack">
+                    Brute Force Attack
+                </option>
+
+                <option value="Rapid Login Attack">
+                    Rapid Login Attack
+                </option>
+
+                <option value="Off-Hours Login">
+                    Off-Hours Login
+                </option>
+
+                <option value="High Failure Rate">
+                    High Failure Rate
+                </option>
+
+                <option value="Account Compromise Indicator">
+                    Account Compromise
+                </option>
+
+                <option value="Suspicious IP Activity">
+                    Suspicious IP Activity
+                </option>
+
+                <option value="Repeated Attack Pattern">
+                    Repeated Attack Pattern
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD CONTROLS -->
+
+    <section class="dashboard-controls">
+
+        <div class="control-buttons">
+
+            <button
+                type="button"
+                id="refresh-btn"
+            >
+                🔄 Refresh Logs
+            </button>
+
+            <a
+                href="/download-report"
+                id="download-report-btn"
+            >
+                📥 Download Security Report
+            </a>
+
+        </div>
+
+        <p id="last-updated">
+            Last updated: Loading...
+        </p>
+
+    </section>
+
+
+    <!-- SECURITY ALERTS -->
+
+    <section class="alerts">
+
+        <h2>🚨 Security Alerts</h2>
+
+        <div id="alerts-container">
+            <p>Loading security alerts...</p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        🔐 Login Attack Detection Tool |
+        SOC Security Monitoring
+    </p>
+
+</footer>
+
+
+<script>
+
+let dashboardData = null;
+
+
+/* --------------------------------
+   LOAD DASHBOARD
+-------------------------------- */
+
+async function loadDashboard() {
+
+    try {
+
+        const response = await fetch("/api/data");
+
+        const data = await response.json();
+
+        dashboardData = data;
+
+        document.getElementById("total-logs").textContent =
+            data.total_logs;
+
+        document.getElementById("failed-logins").textContent =
+            data.failed_logins;
+
+        document.getElementById("suspicious-ips").textContent =
+            data.suspicious_ips;
+
+        document.getElementById("high-alerts").textContent =
+            data.high_alerts;
+
+
+        /* ATTACK SUMMARY */
+
+        document.getElementById("brute-force").textContent =
+            data.attack_summary["Brute Force"];
+
+        document.getElementById("rapid-login").textContent =
+            data.attack_summary["Rapid Login"];
+
+        document.getElementById("off-hours").textContent =
+            data.attack_summary["Off-Hours Login"];
+
+        document.getElementById("high-failure").textContent =
+            data.attack_summary["High Failure Rate"];
+
+        document.getElementById("account-compromise").textContent =
+            data.attack_summary["Account Compromise"];
+
+        document.getElementById("suspicious-ip").textContent =
+            data.attack_summary["Suspicious IP"];
+
+
+        document.getElementById("last-updated").textContent =
+            "Last updated: " + new Date().toLocaleTimeString();
+
+
+        renderAlerts();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        document.getElementById("alerts-container").innerHTML =
+            "<p>❌ Unable to load dashboard data.</p>";
+
+    }
+
+}
+
+
+/* --------------------------------
+   RENDER ALERTS
+-------------------------------- */
+
+function renderAlerts() {
+
+    const container =
+        document.getElementById("alerts-container");
+
+    const search =
+        document.getElementById("ip-search")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const filter =
+        document.getElementById("attack-filter")
+        .value;
+
+
+    if (!dashboardData ||
+        dashboardData.alerts.length === 0) {
+
+        container.innerHTML =
+            "<p>✅ No security alerts detected.</p>";
+
+        return;
+    }
+
+
+    const filteredAlerts =
+        dashboardData.alerts.filter(alert => {
+
+            const ipMatch =
+                alert.ip.toLowerCase().includes(search);
+
+            const attackMatch =
+                filter === "ALL" ||
+                alert.attack_types.includes(filter);
+
+            return ipMatch && attackMatch;
+
+        });
+
+
+    if (filteredAlerts.length === 0) {
+
+        container.innerHTML =
+            "<p>🔍 No matching alerts found.</p>";
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    filteredAlerts.forEach(alert => {
+
+        const alertDiv =
+            document.createElement("div");
+
+        alertDiv.className =
+            "alert " + alert.level.toLowerCase();
+
+
+        let attackTypesHTML = "";
+
+        alert.attack_types.forEach(type => {
+
+            attackTypesHTML +=
+                `<div class="attack-type">
+                    ⚠️ ${type}
+                </div>`;
+
+        });
+
+
+        let successHTML = "";
+
+        if (alert.successful_login) {
+
+            successHTML =
+                `<p>
+                    <strong>Successful Login:</strong>
+                    ${alert.successful_login}
+                </p>`;
+
+        }
+
+
+        alertDiv.innerHTML = `
+
+            <h3>
+                🚨 ${alert.level} Alert
+            </h3>
+
+            <p>
+                <strong>🌐 IP Address:</strong>
+                ${alert.ip}
+            </p>
+
+            <p>
+                <strong>📊 Total Attempts:</strong>
+                ${alert.total_attempts}
+            </p>
+
+            <p>
+                <strong>❌ Failed Attempts:</strong>
+                ${alert.failed_attempts}
+            </p>
+
+            <p>
+                <strong>📈 Failure Rate:</strong>
+                ${alert.failure_rate}%
+            </p>
+
+            <p>
+                <strong>🕐 First Attempt:</strong>
+                ${alert.first_attempt}
+            </p>
+
+            <p>
+                <strong>🕐 Last Attempt:</strong>
+                ${alert.last_attempt}
+            </p>
+
+            ${successHTML}
+
+            <div>
+                <strong>Detected Patterns:</strong>
+                ${attackTypesHTML}
+            </div>
+
+        `;
+
+        container.appendChild(alertDiv);
+
+    });
+
+}
+
+
+/* --------------------------------
+   ADD TEST LOGIN LOG
+-------------------------------- */
+
+async function addTestLog() {
+
+    const time =
+        document.getElementById("log-time").value;
+
+    const ip =
+        document.getElementById("log-ip").value.trim();
+
+    const status =
+        document.getElementById("log-status").value;
+
+    const message =
+        document.getElementById("log-message");
+
+
+    if (!time || !ip) {
+
+        message.textContent =
+            "⚠️ Please enter Time and IP Address.";
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch("/add-log", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    time: time,
+                    ip: ip,
+                    status: status
+                })
+
+            });
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            message.textContent =
+                "❌ " + (result.error || "Could not add log.");
+
+            return;
+
+        }
+
+
+        message.textContent =
+            "✅ " + result.message;
+
+
+        document.getElementById("log-time").value = "";
+
+        document.getElementById("log-ip").value = "";
+
+
+        await loadDashboard();
+
+
+        setTimeout(() => {
+
+            message.textContent = "";
+
+        }, 3000);
+
+    }
+
+
+    catch (error) {
+
+        console.error(error);
+
+        message.textContent =
+            "❌ Unable to connect to Flask server.";
+
+    }
+
+}
+
+
+/* --------------------------------
+   BUTTON EVENTS
+-------------------------------- */
+
+document
+    .getElementById("add-log-btn")
+    .addEventListener(
+        "click",
+        addTestLog
+    );
+
+
+document
+    .getElementById("refresh-btn")
+    .addEventListener(
+        "click",
+        loadDashboard
+    );
+
+
+document
+    .getElementById("ip-search")
+    .addEventListener(
+        "input",
+        renderAlerts
+    );
+
+
+document
+    .getElementById("attack-filter")
+    .addEventListener(
+        "change",
+        renderAlerts
+    );
+
+
+/* --------------------------------
+   START DASHBOARD
+-------------------------------- */
+
+loadDashboard();
+
+</script>
+
+</body>
+
+</html>
+```

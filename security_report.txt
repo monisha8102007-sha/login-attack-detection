@@ -1,0 +1,133 @@
+LOGIN ATTACK DETECTION SECURITY REPORT
+==================================================
+
+Total Logs      : 33
+Failed Logins   : 28
+Suspicious IPs  : 9
+High Alerts     : 7
+
+Alert Level     : HIGH
+Suspicious IP   : 10.0.0.15
+Total Attempts  : 4
+Failed Attempts : 3
+Failure Rate    : 75.0%
+First Attempt   : 10:01
+Last Attempt    : 10:04
+Attack Types    : Brute Force Attack, Rapid Login Attack, High Failure Rate, Account Compromise Indicator, Suspicious IP Activity, Repeated Attack Pattern
+Detection       : POSSIBLE BRUTE-FORCE ATTACK
+Successful Login: 10:04
+Detection       : RAPID LOGIN ATTACK
+Detection       : HIGH FAILURE RATE
+Detection       : POSSIBLE ACCOUNT COMPROMISE (indicator only; needs investigation)
+Detection       : SUSPICIOUS IP ACTIVITY
+Detection       : REPEATED ATTACK PATTERN
+
+Alert Level     : HIGH
+Suspicious IP   : 10.0.0.25
+Total Attempts  : 3
+Failed Attempts : 3
+Failure Rate    : 100.0%
+First Attempt   : 10:05
+Last Attempt    : 10:06
+Attack Types    : Brute Force Attack, Rapid Login Attack, High Failure Rate, Suspicious IP Activity, Repeated Attack Pattern
+Detection       : POSSIBLE BRUTE-FORCE ATTACK
+Detection       : RAPID LOGIN ATTACK
+Detection       : HIGH FAILURE RATE
+Detection       : SUSPICIOUS IP ACTIVITY
+Detection       : REPEATED ATTACK PATTERN
+
+Alert Level     : HIGH
+Suspicious IP   : 10.0.0.55
+Total Attempts  : 3
+Failed Attempts : 3
+Failure Rate    : 100.0%
+First Attempt   : 23:30
+Last Attempt    : 23:32
+Attack Types    : Brute Force Attack, Rapid Login Attack, Off-Hours Login, High Failure Rate, Suspicious IP Activity, Repeated Attack Pattern
+Detection       : POSSIBLE BRUTE-FORCE ATTACK
+Detection       : RAPID LOGIN ATTACK
+Detection       : OFF-HOURS LOGIN
+Detection       : HIGH FAILURE RATE
+Detection       : SUSPICIOUS IP ACTIVITY
+Detection       : REPEATED ATTACK PATTERN
+
+Alert Level     : HIGH
+Suspicious IP   : 10.0.0.65
+Total Attempts  : 4
+Failed Attempts : 4
+Failure Rate    : 100.0%
+First Attempt   : 10:15
+Last Attempt    : 10:18
+Attack Types    : Brute Force Attack, Rapid Login Attack, High Failure Rate, Suspicious IP Activity, Repeated Attack Pattern
+Detection       : POSSIBLE BRUTE-FORCE ATTACK
+Detection       : RAPID LOGIN ATTACK
+Detection       : HIGH FAILURE RATE
+Detection       : SUSPICIOUS IP ACTIVITY
+Detection       : REPEATED ATTACK PATTERN
+
+Alert Level     : MEDIUM
+Suspicious IP   : 10.0.0.75
+Total Attempts  : 3
+Failed Attempts : 2
+Failure Rate    : 66.67%
+First Attempt   : 10:20
+Last Attempt    : 10:22
+Attack Types    : Rapid Login Attack, Suspicious IP Activity
+Detection       : RAPID LOGIN ATTACK
+Detection       : SUSPICIOUS IP ACTIVITY
+
+Alert Level     : MEDIUM
+Suspicious IP   : 172.16.0.10
+Total Attempts  : 2
+Failed Attempts : 2
+Failure Rate    : 100.0%
+First Attempt   : 10:25
+Last Attempt    : 10:26
+Attack Types    : Suspicious IP Activity
+Detection       : SUSPICIOUS IP ACTIVITY
+
+Alert Level     : HIGH
+Suspicious IP   : 172.16.0.20
+Total Attempts  : 4
+Failed Attempts : 3
+Failure Rate    : 75.0%
+First Attempt   : 10:30
+Last Attempt    : 10:33
+Attack Types    : Brute Force Attack, Rapid Login Attack, High Failure Rate, Account Compromise Indicator, Suspicious IP Activity, Repeated Attack Pattern
+Detection       : POSSIBLE BRUTE-FORCE ATTACK
+Successful Login: 10:33
+Detection       : RAPID LOGIN ATTACK
+Detection       : HIGH FAILURE RATE
+Detection       : POSSIBLE ACCOUNT COMPROMISE (indicator only; needs investigation)
+Detection       : SUSPICIOUS IP ACTIVITY
+Detection       : REPEATED ATTACK PATTERN
+
+Alert Level     : HIGH
+Suspicious IP   : 172.16.0.30
+Total Attempts  : 3
+Failed Attempts : 3
+Failure Rate    : 100.0%
+First Attempt   : 23:45
+Last Attempt    : 23:47
+Attack Types    : Brute Force Attack, Rapid Login Attack, Off-Hours Login, High Failure Rate, Suspicious IP Activity, Repeated Attack Pattern
+Detection       : POSSIBLE BRUTE-FORCE ATTACK
+Detection       : RAPID LOGIN ATTACK
+Detection       : OFF-HOURS LOGIN
+Detection       : HIGH FAILURE RATE
+Detection       : SUSPICIOUS IP ACTIVITY
+Detection       : REPEATED ATTACK PATTERN
+
+Alert Level     : HIGH
+Suspicious IP   : 192.168.1.100
+Total Attempts  : 4
+Failed Attempts : 4
+Failure Rate    : 100.0%
+First Attempt   : 20:20
+Last Attempt    : 20:22
+Attack Types    : Brute Force Attack, Rapid Login Attack, High Failure Rate, Suspicious IP Activity, Repeated Attack Pattern
+Detection       : POSSIBLE BRUTE-FORCE ATTACK
+Detection       : RAPID LOGIN ATTACK
+Detection       : HIGH FAILURE RATE
+Detection       : SUSPICIOUS IP ACTIVITY
+Detection       : REPEATED ATTACK PATTERN
+
