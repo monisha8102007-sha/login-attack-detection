@@ -357,29 +357,68 @@ footer {
     color: white;
 }
 
-
 /* -----------------------------
-   RESPONSIVE DESIGN
+   MOBILE RESPONSIVE DESIGN
 ----------------------------- */
 
 @media (max-width: 800px) {
 
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    header {
+        padding: 22px 15px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    header p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
     .cards {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .card {
+        padding: 18px 10px;
+    }
+
+    .card h3 {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        font-size: 26px;
     }
 
     .attack-cards {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
-    .filter-controls {
-        flex-direction: column;
+    .attack-card {
+        padding: 16px 10px;
     }
 
-    #ip-search,
-    #attack-filter {
-        width: 100%;
-        min-width: 0;
+    .attack-card h3 {
+        font-size: 14px;
+    }
+
+    .attack-card p {
+        font-size: 25px;
+    }
+
+    .add-log-section,
+    .filters {
+        padding: 18px;
     }
 
     .add-log-form {
@@ -395,21 +434,20 @@ footer {
     #add-log-btn {
         width: 100%;
     }
-}
 
-
-@media (max-width: 500px) {
-
-    main {
-        width: 94%;
+    .filter-controls {
+        flex-direction: column;
     }
 
-    .cards {
-        grid-template-columns: 1fr;
+    #ip-search,
+    #attack-filter {
+        width: 100%;
+        min-width: 0;
     }
 
-    .attack-cards {
-        grid-template-columns: 1fr;
+    .dashboard-controls {
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .control-buttons {
@@ -422,5 +460,60 @@ footer {
         width: 100%;
         text-align: center;
     }
+
+    #last-updated {
+        text-align: center;
+    }
+
+    .alert {
+        padding: 16px;
+        overflow-wrap: anywhere;
+    }
 }
-```
+
+
+/* SMALL MOBILE */
+@media (max-width: 500px) {
+
+    main {
+        width: 94%;
+    }
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .attack-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .card p {
+        font-size: 28px;
+    }
+
+    .attack-card p {
+        font-size: 27px;
+    }
+
+    .add-log-section,
+    .filters {
+        padding: 15px;
+    }
+
+    .section-description {
+        line-height: 1.5;
+    }
+
+    .alert {
+        font-size: 14px;
+    }
+
+    footer {
+        padding: 20px 12px;
+        font-size: 13px;
+    }
+}
