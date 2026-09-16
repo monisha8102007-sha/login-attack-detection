@@ -1,4 +1,3 @@
-```css
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,17 +8,37 @@ body {
     font-family: Arial, sans-serif;
     background: #f4f6f8;
     color: #222;
+    line-height: 1.5;
+    overflow-x: hidden;
 }
 
 header {
     background: #18202a;
     color: white;
     text-align: center;
-    padding: 30px;
+    padding: 30px 20px;
 }
 
 header h1 {
     margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+header p {
+    line-height: 1.5;
+}
+
+.system-status {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: #e8f5e9;
+    color: #15803d;
+    font-weight: bold;
+    font-size: 14px;
+    max-width: 100%;
+    white-space: normal;
 }
 
 main {
@@ -28,18 +47,16 @@ main {
     margin: 30px auto;
 }
 
-
-/* -----------------------------
-   MAIN DASHBOARD CARDS
------------------------------ */
+/* MAIN DASHBOARD CARDS */
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
 }
 
 .card {
+    min-width: 0;
     background: white;
     padding: 25px;
     border-radius: 12px;
@@ -49,6 +66,7 @@ main {
 
 .card h3 {
     margin-bottom: 15px;
+    overflow-wrap: anywhere;
 }
 
 .card p {
@@ -56,10 +74,7 @@ main {
     font-weight: bold;
 }
 
-
-/* -----------------------------
-   ATTACK SUMMARY
------------------------------ */
+/* ATTACK SUMMARY */
 
 .attack-summary {
     margin-top: 35px;
@@ -71,11 +86,12 @@ main {
 
 .attack-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
 }
 
 .attack-card {
+    min-width: 0;
     background: white;
     padding: 20px;
     border-radius: 12px;
@@ -86,6 +102,7 @@ main {
 .attack-card h3 {
     margin-bottom: 12px;
     font-size: 16px;
+    overflow-wrap: anywhere;
 }
 
 .attack-card p {
@@ -93,12 +110,10 @@ main {
     font-weight: bold;
 }
 
-
-/* -----------------------------
-   ADD TEST LOG
------------------------------ */
+/* ADD TEST LOG */
 
 .add-log-section {
+    min-width: 0;
     margin-top: 35px;
     background: white;
     padding: 25px;
@@ -138,6 +153,8 @@ main {
 
 .form-group input,
 .form-group select {
+    width: 100%;
+    min-width: 0;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -160,7 +177,7 @@ main {
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    white-space: nowrap;
+    white-space: normal;
 }
 
 #add-log-btn:hover {
@@ -171,14 +188,13 @@ main {
     margin-top: 15px;
     font-weight: bold;
     font-size: 14px;
+    overflow-wrap: anywhere;
 }
 
-
-/* -----------------------------
-   SEARCH AND FILTER
------------------------------ */
+/* SEARCH AND FILTER */
 
 .filters {
+    min-width: 0;
     margin-top: 35px;
     background: white;
     padding: 20px;
@@ -198,6 +214,7 @@ main {
 
 #ip-search,
 #attack-filter {
+    min-width: 0;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -221,10 +238,7 @@ main {
     border-color: #2563eb;
 }
 
-
-/* -----------------------------
-   REFRESH AND DOWNLOAD CONTROLS
------------------------------ */
+/* REFRESH AND DOWNLOAD */
 
 .dashboard-controls {
     display: flex;
@@ -276,26 +290,7 @@ main {
     font-size: 14px;
 }
 
-
-/* -----------------------------
-   SYSTEM STATUS
------------------------------ */
-
-.system-status {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 14px;
-    border-radius: 20px;
-    background: #e8f5e9;
-    color: #15803d;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-
-/* -----------------------------
-   SECURITY ALERTS
------------------------------ */
+/* SECURITY ALERTS */
 
 .alerts {
     margin-top: 35px;
@@ -306,16 +301,22 @@ main {
 }
 
 .alert {
+    min-width: 0;
     padding: 20px;
     margin-bottom: 15px;
     border-radius: 10px;
     background: white;
     border-left: 6px solid;
     box-shadow: 0 2px 8px #ddd;
+    overflow-wrap: anywhere;
 }
 
 .alert h3 {
     margin-bottom: 10px;
+}
+
+.alert p {
+    overflow-wrap: anywhere;
 }
 
 .high {
@@ -330,10 +331,7 @@ main {
     border-color: #2563eb;
 }
 
-
-/* -----------------------------
-   ATTACK TYPE
------------------------------ */
+/* ATTACK TYPE */
 
 .attack-type {
     margin: 6px 0;
@@ -342,27 +340,22 @@ main {
     background: #f3f4f6;
     font-weight: bold;
     font-size: 14px;
+    overflow-wrap: anywhere;
 }
 
-
-/* -----------------------------
-   FOOTER
------------------------------ */
+/* FOOTER */
 
 footer {
     text-align: center;
-    padding: 25px;
+    padding: 25px 15px;
     margin-top: 40px;
     background: #18202a;
     color: white;
+    overflow-wrap: anywhere;
 }
-
-/* -----------------------------
-   MOBILE RESPONSIVE DESIGN
------------------------------ */
+/* TABLET */
 
 @media (max-width: 800px) {
-
     main {
         width: 94%;
         margin: 20px auto;
@@ -378,11 +371,10 @@ footer {
 
     header p {
         font-size: 14px;
-        line-height: 1.5;
     }
 
     .cards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
     }
 
@@ -400,7 +392,7 @@ footer {
     }
 
     .attack-cards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
     }
 
@@ -467,53 +459,211 @@ footer {
 
     .alert {
         padding: 16px;
-        overflow-wrap: anywhere;
+        border-left-width: 5px;
     }
 }
 
+/* MOBILE */
 
-/* SMALL MOBILE */
 @media (max-width: 500px) {
+    body {
+        font-size: 14px;
+    }
 
     main {
-        width: 94%;
+        width: 92%;
+        margin: 15px auto;
+    }
+
+    header {
+        padding: 18px 12px;
     }
 
     header h1 {
-        font-size: 21px;
+        font-size: 20px;
+        line-height: 1.3;
     }
+
+    header p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .system-status {
+        font-size: 12px;
+        padding: 7px 10px;
+    }
+
+    /* Dashboard cards: two columns */
 
     .cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
     }
 
-    .attack-cards {
-        grid-template-columns: 1fr;
+    .card {
+        padding: 15px 8px;
+        border-radius: 10px;
+    }
+
+    .card h3 {
+        font-size: 13px;
+        margin-bottom: 8px;
     }
 
     .card p {
-        font-size: 28px;
+        font-size: 24px;
+    }
+
+    /* Attack summary: two columns */
+
+    .attack-summary {
+        margin-top: 25px;
+    }
+
+    .attack-summary h2,
+    .filters h2,
+    .add-log-section h2,
+    .alerts h2 {
+        font-size: 20px;
+        line-height: 1.3;
+        margin-bottom: 14px;
+    }
+
+    .attack-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .attack-card {
+        padding: 14px 8px;
+        border-radius: 10px;
+    }
+
+    .attack-card h3 {
+        font-size: 13px;
+        margin-bottom: 7px;
     }
 
     .attack-card p {
-        font-size: 27px;
+        font-size: 24px;
     }
 
-    .add-log-section,
-    .filters {
+    /* Add Test Login */
+
+    .add-log-section {
+        margin-top: 25px;
         padding: 15px;
     }
 
     .section-description {
+        font-size: 13px;
         line-height: 1.5;
     }
 
-    .alert {
+    .add-log-form {
+        gap: 10px;
+    }
+
+    .form-group {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
         font-size: 14px;
     }
 
-    footer {
-        padding: 20px 12px;
+    #add-log-btn {
+        width: 100%;
+        padding: 11px;
+        font-size: 14px;
+    }
+
+    /* Search & Filter */
+
+    .filters {
+        margin-top: 25px;
+        padding: 15px;
+    }
+
+    .filter-controls {
+        gap: 10px;
+    }
+
+    #ip-search,
+    #attack-filter {
+        width: 100%;
+        min-width: 0;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Buttons */
+
+    .dashboard-controls {
+        margin: 15px 0;
+        gap: 10px;
+    }
+
+    .control-buttons {
+        width: 100%;
+        gap: 8px;
+    }
+
+    #refresh-btn,
+    #download-report-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    #last-updated {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    /* Security Alerts */
+
+    .alerts {
+        margin-top: 25px;
+    }
+
+    .alert {
+        padding: 14px;
+        margin-bottom: 10px;
+        border-left-width: 4px;
+        border-radius: 8px;
+    }
+
+    .alert h3 {
+        font-size: 16px;
+        margin-bottom: 7px;
+    }
+
+    .alert p {
         font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .attack-type {
+        font-size: 12px;
+        padding: 7px 9px;
+    }
+
+    /* Footer */
+
+    footer {
+        padding: 18px 10px;
+        margin-top: 25px;
+        font-size: 12px;
     }
 }
