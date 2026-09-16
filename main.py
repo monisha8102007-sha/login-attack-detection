@@ -415,13 +415,14 @@ def download_report():
     )
 
 
-# -----------------------------
+# -------------------------
 # START SERVER
-# -----------------------------
-if __name__ == "__main__":
+# -------------------------
 
+if __name__ == "__main__":
     print("\n🔐 LOGIN ATTACK DETECTION TOOL")
     print("🌐 Dashboard: http://127.0.0.1:5000")
+    print("📱 Mobile: http://10.124.55.31:5000")
     print("Press CTRL+C to stop the server.\n")
 
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
